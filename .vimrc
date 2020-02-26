@@ -1,10 +1,15 @@
 call plug#begin()
 
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'itchyny/lightline.vim'
+let g:dracula_italic = 0
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'arcticicestudio/nord-vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'elixir-editors/vim-elixir'
+Plug 'mhinz/vim-mix-format'
 
 call plug#end()
 
@@ -13,8 +18,9 @@ filetype plugin indent on
 syntax on
 
 set background=dark
-color dracula
-highlight Comment ctermfg=green
+colorscheme nord
+" color dracula
+" highlight Comment ctermfg=green
 
 set noshowmode
 set timeoutlen=420
@@ -47,6 +53,7 @@ set mouse=a
 set textwidth=79
 set formatoptions-=t                                         " please no wrap!
 set colorcolumn=+1
+highlight ColorColumn ctermbg=8 guibg=darkgrey
 set undodir=~/.vim/undo
 set undofile
 set undolevels=1000
@@ -60,5 +67,5 @@ let mapleader = ','
 " NERDTree
 let g:NERDSpaceDelims=1
 let g:NERDTreeMinimalUI=1
-let g:NERDTreeWinSize=20
+let g:NERDTreeWinSize=30
 nnoremap <leader>d :NERDTreeToggle<CR>
