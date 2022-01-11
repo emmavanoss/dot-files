@@ -1,15 +1,16 @@
 call plug#begin()
 
-" Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'itchyny/lightline.vim'
-let g:dracula_italic = 0
-Plug 'dracula/vim', { 'as': 'dracula' }
+" For nord colour scheme in terminal.app, https://github.com/arcticicestudio/nord-terminal-app
 Plug 'arcticicestudio/nord-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'elixir-editors/vim-elixir'
 Plug 'mhinz/vim-mix-format'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -19,8 +20,10 @@ syntax on
 
 set background=dark
 colorscheme nord
-" color dracula
-" highlight Comment ctermfg=green
+
+let &t_SI = "\e[6 q"                                        " bar cursor in insert mode
+let &t_EI = "\e[1 q"                                        " blinking block cursor in normal mode
+" let &t_EI = "\e[2 q"                                        " steady block cursor in normal mode
 
 set noshowmode
 set timeoutlen=420
@@ -69,3 +72,14 @@ let g:NERDSpaceDelims=1
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeWinSize=30
 nnoremap <leader>d :NERDTreeToggle<CR>
+nmap ,n :NERDTreeFind<CR>
+
+" ALE linter
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
